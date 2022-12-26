@@ -1,0 +1,23 @@
+.form-select:focus,
+.form-control:focus {
+  box-shadow: none;
+}
+
+.accordion-button:focus,
+.form-check-input:focus {
+  box-shadow: none;
+}
+.accordion-button {
+  color: #212529;
+  background-color: white !important;
+}
+.accordion-button:not(.collapsed) {
+  border-bottom: 1px solid #808080;
+}
+.accordion-body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 450px;
+}

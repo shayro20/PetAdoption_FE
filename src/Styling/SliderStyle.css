@@ -1,0 +1,16 @@
+.multi-range-slider {
+  box-shadow: none;
+  border: none;
+}
+.multi-range-slider .thumb::before {
+  box-shadow: none;
+  margin: -4px -9px;
+  width: 13px;
+  height: 13px;
+}
+.multi-range-slider .bar-right,
+.multi-range-slider .bar-left {
+  box-shadow: inset 0px 0px 3px black;
+  height: 6px;
+  padding: 0;
+}
