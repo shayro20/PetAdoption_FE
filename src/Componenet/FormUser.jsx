@@ -1,10 +1,18 @@
 import React, {useState} from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import {useUSerContext} from "../Libs/UserContext";
 
 function FormUser({changeform}) {
+  const {handleSignUpUser, handleLoginUser} = useUSerContext();
+
+  const [passMatch, setPassMatch] = useState("");
   const [signUp, setSignUp] = useState({});
   const [login, setLogin] = useState({});
+
+  const handleMatchPass = (e) => {
+    setPassMatch(e.target.value);
+  };
 
   const handleChangeSign = (e) => {
     setSignUp({...signUp, [e.target.name]: e.target.value});
@@ -15,13 +23,17 @@ function FormUser({changeform}) {
   };
   const handleSignUp = (e) => {
     e.preventDefault();
-    console.log("signup", signUp);
-    setSignUp({});
+    if (signUp.password === passMatch) {
+      handleSignUpUser(signUp);
+      console.log("signup", signUp);
+    } else {
+      return "passwords does not match";
+    }
   };
   const handleLogin = (e) => {
     e.preventDefault();
+    handleLoginUser(login);
     console.log("login", login);
-    setLogin({});
   };
   return (
     <div>
@@ -55,8 +67,8 @@ function FormUser({changeform}) {
           <Form.Label>Repeat Password</Form.Label>
           <Form.Control
             name="repassword"
-            onChange={handleChangeSign}
-            // required={changeform}
+            onChange={handleMatchPass}
+            required={changeform}
             type="password"
             placeholder="Please Repeat Password"
           />
@@ -66,7 +78,7 @@ function FormUser({changeform}) {
           <Form.Control
             name="firstName"
             onChange={handleChangeSign}
-            // required={changeform}
+            required={changeform}
             type="text"
             placeholder="First Name"
           />
@@ -76,7 +88,7 @@ function FormUser({changeform}) {
           <Form.Control
             name="lastName"
             onChange={handleChangeSign}
-            // required={changeform}
+            required={changeform}
             type="text"
             placeholder="Last Name"
           />
@@ -86,7 +98,7 @@ function FormUser({changeform}) {
           <Form.Control
             name="phone"
             onChange={handleChangeSign}
-            // required={changeform}
+            required={changeform}
             pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
             maxLength={12}
             type="tel"

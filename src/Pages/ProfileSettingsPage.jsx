@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 function Profile() {
   const [update, setUpdate] = useState({});
@@ -68,7 +67,8 @@ function Profile() {
             />
             <Form.Text className="text-muted"></Form.Text>
           </Form.Group>
-          <FloatingLabel controlId="floatingTextarea2" label="Bio">
+          <Form.Group>
+            <Form.Label>Phone</Form.Label>
             <Form.Control
               resize="none"
               name="bio"
@@ -77,7 +77,7 @@ function Profile() {
               placeholder="Leave a comment here"
               style={{height: "100px", resize: "none"}}
             />
-          </FloatingLabel>
+          </Form.Group>
           <Button variant="primary" type="submit">
             Submit
           </Button>

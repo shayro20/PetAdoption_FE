@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Result from "../Componenet/Results";
 import Accordion from "react-bootstrap/Accordion";
-import MultiRangeSlider, {ChangeResult} from "multi-range-slider-react";
+import MultiRangeSlider from "multi-range-slider-react";
 import "../Styling/SliderStyle.css";
 import {usePetContext} from "../Libs/PetContext";
 
@@ -16,8 +16,8 @@ function SearchPage() {
   const [maxValueW, setMaxValueW] = useState(100);
   const [searchType, setSearchType] = useState(true);
   const [searchParam, setSearchParam] = useState({
-    type: "Type",
-    status: [],
+    type: "",
+    adoptionStatus: [],
     name: "",
   });
   const handleChange = (e) => {
@@ -26,13 +26,13 @@ function SearchPage() {
 
   const handleCheck = ({target}) => {
     const checkStatus = target.value;
-    let currentStatus = searchParam.status;
+    let currentStatus = searchParam.adoptionStatus;
     target.checked
       ? currentStatus.push(checkStatus)
       : (currentStatus = currentStatus.filter(
           (status) => status !== checkStatus
         ));
-    setSearchParam({...searchParam, status: currentStatus});
+    setSearchParam({...searchParam, adoptionStatus: currentStatus});
   };
 
   const handleSubmit = (e) => {
@@ -45,7 +45,6 @@ function SearchPage() {
     };
     searchType ? handleSearch(basicSearch) : handleSearch(advSearch);
   };
-
   return (
     <div className="w-50">
       <h1>Search your Friend!</h1>

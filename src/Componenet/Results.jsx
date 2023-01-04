@@ -7,7 +7,7 @@ function Result() {
     <div>
       {petDB.map((item) => {
         return (
-          <div key={item.id}>
+          <div key={item.petId}>
             <div>{item.name}</div>
             <div>{item.adoptionStatus}</div>
             <div>{item.picture}</div>
