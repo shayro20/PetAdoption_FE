@@ -8,7 +8,7 @@ import "../Styling/SliderStyle.css";
 import {usePetContext} from "../Libs/PetContext";
 
 function SearchPage() {
-  const {handleSearch} = usePetContext();
+  const {handleSearch,savedPets} = usePetContext();
 
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(100);
@@ -93,7 +93,7 @@ function SearchPage() {
                   min:{minValueW} max:{maxValueW}
                 </div>
                 <MultiRangeSlider
-                  min={10}
+                  min={0}
                   max={100}
                   step={1}
                   ruler={false}
@@ -114,7 +114,7 @@ function SearchPage() {
                   min:{minValue} max:{maxValue}
                 </div>
                 <MultiRangeSlider
-                  min={10}
+                  min={0}
                   max={100}
                   step={1}
                   ruler={false}

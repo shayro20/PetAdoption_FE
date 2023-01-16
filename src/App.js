@@ -11,6 +11,8 @@ import PetContextProvider from "./Libs/PetContext";
 import "./Styling/SearchPage.css";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import PetPage from "./Pages/PetPage";
+import PrivateRoute from "./Componenet/PrivateRoute";
+import PrivateRouteAdmin from "./Componenet/PrivateRouteAdmin";
 
 function App() {
   return (
@@ -21,12 +23,51 @@ function App() {
             <Routes>
               <Route path="/" element={<NavBar />}>
                 <Route index element={<HomePage />} />
-                <Route path="/Search" element={<SearchPage />} />
-                <Route path="/Profile" element={<Profile />} />
-                <Route path="/MyPets" element={<MyPetsPage />} />
-                <Route path="/Dashboard" element={<Dashboard />} />
-                <Route path="/AddPet" element={<AddPet />}></Route>
                 <Route path="/" element={<HomePage />} />
+
+                <Route path="/Search" element={<SearchPage />} />
+                <Route
+                  path="/Profile"
+                  element={
+                    <PrivateRoute>
+                      <Profile />
+                    </PrivateRoute>
+                  }
+                />
+                <Route path="/PetPage/:petId" element={<PetPage />} />
+
+                <Route
+                  path="/MyPets"
+                  element={
+                    <PrivateRoute>
+                      <MyPetsPage />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/Dashboard"
+                  element={
+                    <PrivateRouteAdmin>
+                      <Dashboard />
+                    </PrivateRouteAdmin>
+                  }
+                />
+                <Route
+                  path="/AddPet"
+                  element={
+                    <PrivateRouteAdmin>
+                      <AddPet />
+                    </PrivateRouteAdmin>
+                  }
+                />
+                <Route
+                  path="/EditPet/:petId"
+                  element={
+                    <PrivateRouteAdmin>
+                      <AddPet />
+                    </PrivateRouteAdmin>
+                  }
+                />
               </Route>
             </Routes>
           </BrowserRouter>

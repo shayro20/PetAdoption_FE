@@ -2,8 +2,13 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import FormUser from "./FormUser";
 import React from "react";
+import {useUSerContext} from "../Libs/UserContext";
 
 function Login({onHide, show, switchForm, changeForm}) {
+  const {currentUser} = useUSerContext();
+  // if (currentUser.isUser === true) {
+    
+  // }
   return (
     <Modal
       onHide={onHide}
@@ -18,7 +23,8 @@ function Login({onHide, show, switchForm, changeForm}) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <FormUser changeform={changeForm} />
+        <FormUser changeform={changeForm}
+        onHide={onHide} />
       </Modal.Body>
       <Modal.Footer className="d-flex justify-content-between">
         <button

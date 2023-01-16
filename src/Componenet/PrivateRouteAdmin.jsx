@@ -1,13 +1,12 @@
 import React from "react";
 import {Navigate} from "react-router-dom";
 import {useUSerContext} from "../Libs/UserContext";
-
-function PrivateRoute({children}) {
+function PrivateRouteAdmin({children}) {
   const {currentUser} = useUSerContext();
-  if (currentUser?.isUser == true) {
+  if (currentUser?.isAdmin == true) {
     return <div>{children}</div>;
   } else {
     return <Navigate to={"/"} />;
   }
 }
-export default PrivateRoute;
+export default PrivateRouteAdmin;

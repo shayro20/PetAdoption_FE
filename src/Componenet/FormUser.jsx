@@ -3,8 +3,9 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import {useUSerContext} from "../Libs/UserContext";
 
-function FormUser({changeform}) {
+function FormUser({changeform, onHide}) {
   const {handleSignUpUser, handleLoginUser} = useUSerContext();
+  const [error, setError] = useState("");
 
   const [passMatch, setPassMatch] = useState("");
   const [signUp, setSignUp] = useState({});
@@ -30,10 +31,16 @@ function FormUser({changeform}) {
       return "passwords does not match";
     }
   };
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    handleLoginUser(login);
-    console.log("login", login);
+    setError("")
+    const logIN = await handleLoginUser(login);
+    if (logIN === true) {
+      onHide();
+    } else {
+      setError(logIN)
+      console.log(logIN);
+    }
   };
   return (
     <div>
@@ -105,14 +112,16 @@ function FormUser({changeform}) {
             placeholder="10 digit number"
           />
         </Form.Group>
-
-        <Button
-          onClick={(e) => e.stopPropagation()}
-          variant="primary"
-          type="submit"
-        >
-          {changeform ? "Sign Up" : "Log in"}
-        </Button>
+        <div>
+          <Button
+            onClick={(e) => e.stopPropagation()}
+            variant="primary"
+            type="submit"
+          >
+            {changeform ? "Sign Up" : "Log in"}
+          </Button>
+          <div>{error}</div>
+        </div>
       </Form>
     </div>
   );

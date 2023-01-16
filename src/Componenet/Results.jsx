@@ -1,17 +1,14 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {usePetContext} from "../Libs/PetContext";
-
+import PetCard from "./PetCard";
 function Result() {
   const {petDB} = usePetContext();
   return (
     <div>
-      {petDB.map((item) => {
+      {petDB.map((pet) => {
         return (
-          <div key={item.petId}>
-            <div>{item.name}</div>
-            <div>{item.adoptionStatus}</div>
-            <div>{item.picture}</div>
-            <button>see more</button>
+          <div key={pet.petId}>
+            <PetCard pet={pet} />
           </div>
         );
       })}
