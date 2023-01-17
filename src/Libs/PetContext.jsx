@@ -13,7 +13,7 @@ function PetContextProvider({children}) {
   const [petPageInfo, setPetPageInfo] = useState({});
   const [dashboardPets, setDashboardPets] = useState([]);
   const originUrl = "http://localhost:8080";
-  const {currentUser} = useUSerContext();
+  const {currentUser, setCurrentUser} = useUSerContext();
 
   // const fetchPets = async () => {
   //   try {
@@ -43,6 +43,7 @@ function PetContextProvider({children}) {
         withCredentials: true,
       });
     } catch (error) {
+      setCurrentUser(null);
       console.log(error);
     }
   };
@@ -64,6 +65,7 @@ function PetContextProvider({children}) {
       }
     } catch (error) {
       console.log(error);
+      setCurrentUser(null);
     }
   };
 
@@ -82,7 +84,9 @@ function PetContextProvider({children}) {
       } else {
         console.log("failed");
       }
-    } catch (error) {}
+    } catch (error) {
+      setCurrentUser(null);
+    }
   };
 
   const getPetbyId = async (petInfo) => {
@@ -94,6 +98,7 @@ function PetContextProvider({children}) {
       return res;
     } catch (error) {
       console.log(error);
+      setCurrentUser(null);
     }
   };
   const getMyPets = async (userId, dash) => {
@@ -105,10 +110,7 @@ function PetContextProvider({children}) {
       });
       setOwnedPets(res.data.owned);
       setSavedPets(res.data.saved);
-      if (dash === true) {
-        console.log("ssssssssss");
-        setDashboardPets(res.data.owned);
-      }
+      setDashboardPets(res.data.owned);
     } catch (error) {
       console.log(error);
     }
@@ -150,11 +152,11 @@ function PetContextProvider({children}) {
   //   setPetDB(newPetsArray);
   // };
   // -----------------------------------------
-  const deletePet = async (petId) => {
-    // const res = await axios.delete(`${baseURL}/pets`);
-    const newPetList = petDB.filter((pet) => pet.id !== petId);
-    setPetDB(newPetList);
-  };
+  // const deletePet = async (petId) => {
+  //   // const res = await axios.delete(`${baseURL}/pets`);
+  //   const newPetList = petDB.filter((pet) => pet.id !== petId);
+  //   setPetDB(newPetList);
+  // };
 
   // useEffect(() => {
   //   fetchPets();
@@ -166,7 +168,7 @@ function PetContextProvider({children}) {
         addPet,
         updatePet,
         petDB,
-        deletePet,
+        // deletePet,
         handleSearch,
         petPageInfo,
         getPetbyId,

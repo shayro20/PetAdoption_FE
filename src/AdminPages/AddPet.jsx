@@ -3,7 +3,7 @@ import PetForm from "../Componenet/FormPet";
 
 function AddPet() {
   return (
-    <div>
+    <div style={{paddingTop:"20%"}}>
       <PetForm />
     </div>
   );

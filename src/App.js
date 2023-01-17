@@ -9,6 +9,7 @@ import AddPet from "./AdminPages/AddPet";
 import UserContextProvider from "./Libs/UserContext";
 import PetContextProvider from "./Libs/PetContext";
 import "./Styling/SearchPage.css";
+import "./Styling/Global.css";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import PetPage from "./Pages/PetPage";
 import PrivateRoute from "./Componenet/PrivateRoute";
@@ -22,7 +23,6 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<NavBar />}>
-                <Route index element={<HomePage />} />
                 <Route path="/" element={<HomePage />} />
 
                 <Route path="/Search" element={<SearchPage />} />

@@ -3,11 +3,11 @@ import {useUSerContext} from "../Libs/UserContext";
 
 function HomePage() {
   const {currentUser} = useUSerContext();
-  console.log(currentUser)
+  console.log(currentUser);
   return (
-    <div>
+    <div className="location">
       <h1>
-        Hello {currentUser ? currentUser.firstName : "and welcome "} to{" "}
+        Hello {currentUser ? currentUser.firstName : " "} and welcome to{" "}
         <b>Home For Everyone</b>
       </h1>
       <p>

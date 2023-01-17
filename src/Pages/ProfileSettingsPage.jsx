@@ -14,7 +14,7 @@ function Profile() {
   const handleUpdate = (e) => {
     e.preventDefault();
     if (update.newPassword === update.rePassword) {
-      console.log(update)
+      console.log(update);
       handleUpdateUser(update, currentUser.id);
     } else {
       console.log("not matching passwords");
@@ -40,7 +40,7 @@ function Profile() {
     }
   }, [currentUser]);
   return (
-    <div>
+    <div style={{paddingTop:"30%"}}>
       <h1>ProfilePage</h1>
       <div>
         {" "}

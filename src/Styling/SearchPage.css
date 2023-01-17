@@ -2,14 +2,17 @@
 .form-control:focus {
   box-shadow: none;
 }
-
+.form-select {
+  background-color: aquamarine;
+}
 .accordion-button:focus,
 .form-check-input:focus {
   box-shadow: none;
 }
 .accordion-button {
   color: #212529;
-  background-color: white !important;
+  background-color: aquamarine !important;
+  position: unset;
 }
 .accordion-button:not(.collapsed) {
   border-bottom: 1px solid #808080;
@@ -20,4 +23,41 @@
   flex-wrap: wrap;
   justify-content: space-around;
   height: 450px;
+  position: unset;
+  background-color: aquamarine;
+}
+.multi-range-slider .bar-inner {
+  position: none;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  padding-left: 20%;
+  padding-right: 20%;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+.button-container > button{
+  border: 1px blue dotted;
+  border-radius: 40%;
+  /* border: none; */
+  margin-top: 2%;
+  width: 20%;
+  height: 50px;
+  background-size: 100% 100%;
+background-position: 0px 0px;
+background-image: linear-gradient(90deg, #00FF54FF 0%, #00ECFFFF 99%);
+}
+
+.button-container > button:hover{
+  transition:2s;
+  background-size: 100% 100%;
+  background-position: 0px 0px,0px 0px;
+  background-image: linear-gradient(86deg, #00FF5482 0%, #00ECFF82 99%),radial-gradient(75% 75% at 50% 50%, #073AFFFF 0%, #07FF3EBA 100%);
 }

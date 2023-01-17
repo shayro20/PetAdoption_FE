@@ -1,0 +1,10 @@
+body,
+html {
+  background-size: 100% 100%;
+  background-position: 0px 0px;
+  background-image: linear-gradient(90deg, #00ff54ff 0%, #00ecffff 99%);
+  height: 100vh;
+}
+.location {
+  padding-top: 5%;
+}

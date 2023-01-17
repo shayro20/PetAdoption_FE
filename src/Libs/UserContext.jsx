@@ -71,6 +71,7 @@ function UserContextProvider({children}) {
       setUserList(res.data);
     } catch (error) {
       console.log(error);
+      setCurrentUser(null);
     }
   };
   const handleGetUser = async (userId) => {
@@ -98,6 +99,7 @@ function UserContextProvider({children}) {
         handleSignUpUser,
         handleLoginUser,
         currentUser,
+        setCurrentUser,
         handleSignOut,
         handleGetAllUser,
         userList,

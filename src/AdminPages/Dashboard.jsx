@@ -10,7 +10,7 @@ function Dashboard() {
   }, []);
 
   return (
-    <div>
+    <div style={{paddingTop: "20%"}}>
       Dashboard
       <div>
         {userList.map((user) => {

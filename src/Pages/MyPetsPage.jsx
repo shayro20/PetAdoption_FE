@@ -20,7 +20,7 @@ function MyPetsPage() {
   }, [currentUser]);
   
   return (
-    <div>
+    <div className="location">
       MyPetsPage
       <div>
         <h1>ownedPets</h1>
