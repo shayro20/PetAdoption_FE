@@ -23,18 +23,6 @@ function PetForm() {
     hypoallergenic: false,
   });
   const [updatePetInfo, setUpdatePetInfo] = useState();
-  const [petStat, setPetStat] = useState({
-    type: "Dog",
-    adoptionStatus: "Available",
-    bio: "",
-    breed: "",
-    diet: "",
-    height: 1,
-    weight: 1,
-    name: "",
-    color: "",
-    hypoallergenic: false,
-  });
 
   useEffect(() => {
     if (petId) {
@@ -47,7 +35,6 @@ function PetForm() {
     if (res) {
       const pet = res.data[0];
       console.log(pet);
-      setPetStat({...pet});
       setUpdatePetInfo({...pet});
     } else {
       console.log("no such pet");
@@ -60,9 +47,9 @@ function PetForm() {
     if (petId) {
       const {created_at, ownerId, petId, adoptionStatus, ...pet} =
         updatePetInfo;
-        console.log(pet)
+      console.log(pet);
       for (const key in pet) {
-        console.log(pet[key])
+        console.log(pet[key]);
         dataForm.append(key, pet[key]);
       }
 
@@ -72,6 +59,19 @@ function PetForm() {
         dataForm.append(key, petInfo[key]);
       }
       addPet(dataForm);
+      setPetInfo({
+        type: "Dog",
+        adoptionStatus: "Available",
+        bio: "",
+        breed: "",
+        diet: "",
+        height: 1,
+        weight: 1,
+        name: "",
+        picture: "",
+        color: "",
+        hypoallergenic: false,
+      });
     }
   };
 
@@ -101,6 +101,7 @@ function PetForm() {
     e.preventDefault();
     infoForm();
   };
+
   return (
     <div>
       <Form onSubmit={handleSub}>
@@ -109,7 +110,7 @@ function PetForm() {
           required={petId ? false : true}
           onChange={handleChange}
           name="type"
-          value={petId ? petStat?.type : petInfo.type}
+          value={petId ? updatePetInfo?.type : petInfo.type}
         >
           <option value="Dog">Dog</option>
           <option value="Cat">Cat</option>
@@ -181,8 +182,10 @@ function PetForm() {
         </InputGroup>
         <Form.Label>Color</Form.Label>
         <Form.Control
+          name="color"
           required={petId ? false : true}
           type="text"
+          onChange={handleChange}
           placeholder="insert Color"
           value={petId ? updatePetInfo?.color : petInfo.color}
         />

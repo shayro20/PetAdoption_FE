@@ -14,6 +14,7 @@ function PetContextProvider({children}) {
   const [dashboardPets, setDashboardPets] = useState([]);
   const originUrl = "http://localhost:8080";
   const {currentUser, setCurrentUser} = useUSerContext();
+  const [petStatus, setPetStatus] = useState("");
 
   // const fetchPets = async () => {
   //   try {
@@ -93,7 +94,7 @@ function PetContextProvider({children}) {
     console.log(petInfo);
     try {
       const res = await axios.get(`${originUrl}/pets/${petInfo}`);
-      setPetPageInfo(res.data);
+      setPetPageInfo(res.data[0]);
       console.log(res);
       return res;
     } catch (error) {
@@ -101,8 +102,7 @@ function PetContextProvider({children}) {
       setCurrentUser(null);
     }
   };
-  const getMyPets = async (userId, dash) => {
-    console.log(dash);
+  const getMyPets = async (userId) => {
     console.log(userId);
     try {
       const res = await axios.get(`${originUrl}/pets/user/${userId}`, {
@@ -110,7 +110,7 @@ function PetContextProvider({children}) {
       });
       setOwnedPets(res.data.owned);
       setSavedPets(res.data.saved);
-      setDashboardPets(res.data.owned);
+      return res.data.owned;
     } catch (error) {
       console.log(error);
     }
@@ -171,6 +171,7 @@ function PetContextProvider({children}) {
         // deletePet,
         handleSearch,
         petPageInfo,
+        setPetPageInfo,
         getPetbyId,
         adoptPet,
         returnPet,
@@ -180,6 +181,8 @@ function PetContextProvider({children}) {
         savedPets,
         ownedPets,
         dashboardPets,
+        petStatus,
+        setPetStatus,
       }}
     >
       {children}

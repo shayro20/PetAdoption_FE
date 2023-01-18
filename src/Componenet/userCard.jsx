@@ -2,27 +2,44 @@ import React, {useState} from "react";
 import {usePetContext} from "../Libs/PetContext";
 import PetCard from "./PetCard";
 
-function UserCard({user}) {
-  const {getMyPets, ownedPets, dashboardPets} = usePetContext();
+function UserCard({user, handleClick}) {
+  const {ownedPets} = usePetContext();
   const [show, setShow] = useState(true);
+  const [pets, setPets] = useState([]);
+  console.log(pets);
+  console.log(user);
 
-  const handleOwnedPets = async () => {
-    // if (show === true) {
-    getMyPets(user.userId, true);
-    setShow(!show);
-    // } else {
-    // }
-    // setShow(!show);
+  const handleUse = async () => {
+    const res = await handleClick(user.userId);
+    if (res) {
+      console.log("child result", res);
+      if (show) {
+        setPets(res.pets);
+        setShow(false);
+      } else {
+        setPets([]);
+        setShow(true);
+      }
+    }
   };
-  console.log(user.userId);
-  console.log(dashboardPets);
   return (
+    // <table>
+    //   <tr>
+    //     <th>{user.userId}</th>
+    //     <th>{user.email}</th>
+    //     <th>{user.firstName+""+user.lastName}</th>
+    //     <th>{user.phone}</th>
+    //     <th></th>
+    //     <th></th>
+    //   </tr>
+    // </table>
     <div>
       userinfo{user.userId}
       <div>
-        <button onClick={handleOwnedPets}>ownedpets</button>
+        <p>{user.userId}</p>
+        <button onClick={() => handleUse(user.userId)}>Click me</button>
         <div>
-          {dashboardPets.map((pet) => {
+          {pets.map((pet) => {
             return (
               <div key={pet.petId}>
                 <PetCard pet={pet} />

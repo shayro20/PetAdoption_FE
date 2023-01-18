@@ -11,7 +11,7 @@ import PetContextProvider from "./Libs/PetContext";
 import "./Styling/SearchPage.css";
 import "./Styling/Global.css";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import PetPage from "./Pages/PetPage";
+import {PetPage} from "./Pages/PetPage";
 import PrivateRoute from "./Componenet/PrivateRoute";
 import PrivateRouteAdmin from "./Componenet/PrivateRouteAdmin";
 
